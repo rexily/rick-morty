@@ -1,0 +1,13 @@
+@use '@/styles/variables' as *;
+@use '@/styles/fonts' as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, #root {
+    background-color: $color-background;
+    font-family: $font-family;
+}
