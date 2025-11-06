@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import LogoIcon from '@/assets/logo-black.svg?react'
+import { LogoBlack } from '@/assets/icons'
 
 import classNames from 'classnames/bind'
 import styles from './Header.module.scss'
@@ -11,7 +11,7 @@ export const Header = () => {
     <header className={cx('header')}>
       <div className={cx('header__inner')} >
         <Link to="/">
-          <LogoIcon />
+          <LogoBlack />
         </Link>
       </div>
     </header>

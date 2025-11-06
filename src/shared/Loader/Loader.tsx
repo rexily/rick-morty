@@ -11,7 +11,7 @@ interface ILoaderProps {
   text?: string
 }
 
-const Loader: React.FC<ILoaderProps> = ({ size, text }) => {
+export const Loader: React.FC<ILoaderProps> = ({ size, text }) => {
   return (
     <div className={cx('loader')}>
       <img
@@ -20,10 +20,10 @@ const Loader: React.FC<ILoaderProps> = ({ size, text }) => {
         className={cx('loader__image', `loader__image--${size}`)}
       />
       <div className={cx('loader__text')} >
-        {text && size === 'large' && <p>{text}</p>}
+        {text && <p>{text}</p>}
       </div>
     </div>
   )
 }
 
-export default Loader
+

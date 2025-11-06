@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
-import ArrowLeft from '@/assets/arrow-left.svg?react'
-import Loader from '@/shared/Loader/Loader'
+import { ArrowLeft } from '@/assets/icons'
+import { Loader } from '@/shared'
 
 import classNames from 'classnames/bind'
 import styles from './CharacterInfo.module.scss'

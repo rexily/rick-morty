@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router'
-import { Header } from '@/shared/Header/Header.tsx'
-import { Footer } from '@/shared/Footer/Footer'
+import { Header, Footer } from '@/shared'
 
 import classNames from 'classnames/bind'
 import styles from './Layout.module.scss'

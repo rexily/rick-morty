@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router'
-import { Layout } from '@/shared/Layout/Layout.tsx'
 import { CharacterList, CharacterInfo } from '@/pages'
+import { Layout } from '@/shared'
 
 function App() {
   return (
