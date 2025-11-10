@@ -1,5 +1,5 @@
 import RickAndMortyLogoPng from '@/assets/rick-and-morty-logo.png'
-import Loader from '@/shared/Loader/Loader'
+import { Loader } from '@/shared/'
 
 import classNames from 'classnames/bind'
 import styles from './CharacterList.module.scss'
