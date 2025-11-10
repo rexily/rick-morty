@@ -1,0 +1,13 @@
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  box-shadow: -2px 0px 8px 2px $color-shadow;
+  padding: 0 200px;
+  justify-content: center;
+
+  &__inner {
+    max-width: 1440px;
+    width: 100%;
+  }
+}
