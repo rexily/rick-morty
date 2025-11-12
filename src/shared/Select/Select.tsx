@@ -85,7 +85,7 @@ export const Select = ({
   }
 
   const icon =
-    icons[size === 'small' ? 'small' : 'default'][!isOpen ? 'up' : 'down']
+    icons[size === 'small' ? 'small' : 'default'][isOpen ? 'up' : 'down']
 
   return (
     <div
