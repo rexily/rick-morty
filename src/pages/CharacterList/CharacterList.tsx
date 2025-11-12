@@ -1,7 +1,7 @@
-import RickAndMortyLogoPng from '@/assets/rick-and-morty-logo.png'
-import { Loader } from '@/shared/'
-
 import classNames from 'classnames/bind'
+import { GENDER_OPTIONS, SPECIES_OPTIONS, STATUS_OPTIONS } from '@/constants'
+import { Select, StatusCircle, TStatusesType } from '@/shared/'
+
 import styles from './CharacterList.module.scss'
 
 const cx = classNames.bind(styles)
@@ -9,14 +9,34 @@ const cx = classNames.bind(styles)
 export const CharacterList = () => {
   return (
     <div className={cx('character-list')}>
-      <img
-        src={RickAndMortyLogoPng}
-        alt='Rick and Morty Logo'
-      />
-      <Loader
-        size='large'
-        text='Loading characters...'
-      />
+
+      <div className={cx('character-list__inner')}>
+        <Select
+          size='small'
+          placeholder='Alive'
+          value='Alive'
+          options={STATUS_OPTIONS}
+          SelectOptionComponent={({ value }) => (
+            <>
+              {value}
+              <StatusCircle status={value as TStatusesType} />
+            </>
+          )}
+        />
+
+        <Select
+          size='default'
+          placeholder='Gender'
+          options={GENDER_OPTIONS}
+        />
+
+        <Select
+          size='default'
+          placeholder='Species'
+          options={SPECIES_OPTIONS}
+        />
+      </div>
+
     </div>
   )
 }
