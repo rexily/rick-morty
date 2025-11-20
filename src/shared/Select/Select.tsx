@@ -1,49 +1,56 @@
 import React, { useEffect, useRef, useState } from 'react'
 import classNames from 'classnames/bind'
+
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   ArrowDownIconSmall,
   ArrowUpIconSmall
 } from '@/assets/icons'
+
 import styles from './Select.module.scss'
 
 const cx = classNames.bind(styles)
 
-export interface IOptions {
+export interface IOptions<T extends string = string> {
   label: string
-  value: string
+  value: T
 }
 
-export interface SelectOptionContentProps {
-  value?: string
+export interface SelectOptionContentProps<T extends string = string> {
+  label: string
+  value?: T
 }
 
-export const DefaultSelectOptionContent = ({
-  value
-}: SelectOptionContentProps) => {
-  return <>{value}</>
-}
+export const DefaultSelectOptionContent = <T extends string>({
+  label
+}: SelectOptionContentProps<T>) => <>{label}</>
 
-interface ISelectProps {
-  options: IOptions[]
-  size: 'default' | 'small'
-  value?: string
+interface ISelectProps<T extends string> {
+  options: readonly IOptions<T>[]
+  size?: 'default' | 'small'
+  value?: T
   placeholder?: string
-  onChange?: (value: string) => void
-  SelectOptionComponent?: React.FC<SelectOptionContentProps>
+  onChange?: (value: T) => void
+  SelectOptionComponent?: React.FC<SelectOptionContentProps<T>>
 }
 
-export const Select = ({
+const ICONS = {
+  small: { up: <ArrowUpIconSmall />, down: <ArrowDownIconSmall /> },
+  default: { up: <ArrowUpIcon />, down: <ArrowDownIcon /> }
+}
+
+export const Select = <T extends string>({
   options,
   size = 'default',
   value,
   placeholder,
   onChange,
   SelectOptionComponent = DefaultSelectOptionContent
-}: ISelectProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [selectedOption, setSelectedOption] = useState<IOptions | null>(null)
+}: ISelectProps<T>) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [selectedOption, setSelectedOption] = useState<IOptions<T> | null>(null)
+
   const componentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -62,60 +69,59 @@ export const Select = ({
       document.removeEventListener('click', handleClickOutside)
     }
   }, [])
-
-  const handleShowFilterOptions = () => {
-    setIsOpen((prevState) => !prevState)
-  }
-
-  const handleOptionClickSave = (option: IOptions) => {
-    setSelectedOption(option)
-    setIsOpen(false)
-    onChange?.(option.value)
-  }
-
-  const icons = {
-    small: {
-      up: <ArrowUpIconSmall />,
-      down: <ArrowDownIconSmall />
-    },
-    default: {
-      up: <ArrowUpIcon />,
-      down: <ArrowDownIcon />
+  useEffect(() => {
+    if (!value) {
+      setSelectedOption(null)
+      return
     }
+    const currentValue = options.find((o) => o.value === value) || null
+    setSelectedOption(currentValue)
+  }, [value, options])
+
+  const renderSelected = () => {
+    if (size === 'small') {
+      return (
+        <SelectOptionComponent
+          label={selectedOption?.label ?? placeholder ?? ''}
+          value={selectedOption?.value}
+        />
+      )
+    }
+
+    if (selectedOption) return selectedOption.label
+    if (placeholder) return placeholder
+    return ''
   }
 
-  const icon =
-    icons[size === 'small' ? 'small' : 'default'][isOpen ? 'up' : 'down']
+  const renderOption = (option: IOptions<T>) => {
+    return (
+      <SelectOptionComponent
+        label={option.label}
+        value={option.value}
+      />
+    )
+  }
+
+  const icons = ICONS[size]
 
   return (
     <div
-      className={cx('select', {
-        select_small: size === 'small'
-      })}
       ref={componentRef}
+      className={cx('select', { select_small: size === 'small' })}
     >
       <button
         type='button'
+        onClick={() => setIsOpen((prev) => !prev)}
         className={cx('select__button', {
           select__button_small: size === 'small'
         })}
-        onClick={handleShowFilterOptions}
       >
-        {size === 'small' ? (
-          <div className={cx('select__button-inner')}>
-          <SelectOptionComponent
-            value={
-              selectedOption?.label || value || placeholder
-            }
-          /></div>
-        ) : (
-          selectedOption?.label || value || placeholder
-        )}
+        <div className={cx('select__button-inner')}>{renderSelected()}</div>
 
-        {icon}
+        {isOpen ? icons.up : icons.down}
       </button>
 
-      {isOpen && options.length && (
+      {isOpen && (
         <ul
           className={cx('select__list', {
             select__list_small: size === 'small'
@@ -128,10 +134,12 @@ export const Select = ({
                 select__item_small: size === 'small'
               })}
               onClick={() => {
-                handleOptionClickSave(option)
+                setSelectedOption(option)
+                setIsOpen(false)
+                onChange?.(option.value)
               }}
             >
-              <SelectOptionComponent value={option.label} />
+              {renderOption(option)}
             </li>
           ))}
         </ul>

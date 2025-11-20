@@ -1,6 +1,8 @@
 import classNames from 'classnames/bind'
+
 import { GENDER_OPTIONS, SPECIES_OPTIONS, STATUS_OPTIONS } from '@/constants'
-import { Select, StatusCircle, TStatusesType } from '@/shared/'
+
+import { Select, StatusCircle } from '@/shared/'
 
 import styles from './CharacterList.module.scss'
 
@@ -9,17 +11,16 @@ const cx = classNames.bind(styles)
 export const CharacterList = () => {
   return (
     <div className={cx('character-list')}>
-
       <div className={cx('character-list__inner')}>
         <Select
           size='small'
-          placeholder='Alive'
-          value='Alive'
+          placeholder='Status'
+          value='alive'
           options={STATUS_OPTIONS}
-          SelectOptionComponent={({ value }) => (
+          SelectOptionComponent={({ label, value }) => (
             <>
-              {value}
-              <StatusCircle status={value as TStatusesType} />
+              {label}
+              <StatusCircle status={value} />
             </>
           )}
         />
@@ -36,7 +37,6 @@ export const CharacterList = () => {
           options={SPECIES_OPTIONS}
         />
       </div>
-
     </div>
   )
 }

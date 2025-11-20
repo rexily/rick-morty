@@ -5,16 +5,16 @@ export const STATUS_OPTIONS = [
 ]
 
 export const SPECIES_OPTIONS = [
-  { label: 'Human', value: 'Human' },
-  { label: 'Alien', value: 'Alien' },
-  { label: 'Humanoid', value: 'Humanoid' },
-  { label: 'Animal', value: 'Animal' },
-  { label: 'Robot', value: 'Robot' },
-  { label: 'Cronenberg', value: 'Cronenberg' },
-  { label: 'Mythology', value: 'Mythology' },
-  { label: 'Disease', value: 'Disease' },
-  { label: 'Unknown', value: 'Unknown' }
-];
+  { label: 'Human', value: 'human' },
+  { label: 'Alien', value: 'alien' },
+  { label: 'Humanoid', value: 'humanoid' },
+  { label: 'Animal', value: 'animal' },
+  { label: 'Robot', value: 'robot' },
+  { label: 'Cronenberg', value: 'cronenberg' },
+  { label: 'Mythology', value: 'mythology' },
+  { label: 'Disease', value: 'disease' },
+  { label: 'Unknown', value: 'unknown' }
+]
 
 export const GENDER_OPTIONS = [
   { label: 'Female', value: 'female' },
