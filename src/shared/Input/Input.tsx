@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { CrossIcon } from '@/assets/icons'
 import classNames from 'classnames/bind'
 import styles from './Input.module.scss'
@@ -23,15 +23,13 @@ export const Input: React.FC<IInput> = ({
   placeholder
 }) => {
   const ref = useRef<HTMLInputElement | null>(null)
-  const [inputValue, setInputValue] = useState<string>(value)
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value)
+    onChange(event.target.value)
   }
 
 
   const handleClear = () => {
-    setInputValue('')
     onChange('')
   }
 
@@ -49,14 +47,14 @@ export const Input: React.FC<IInput> = ({
 
         <input
           ref={ref}
-          value={inputValue}
+          value={value}
           onChange={handleInput}
           className={cx('input', `input-${variant}`)}
           placeholder={placeholder}
         />
       </div>
 
-      {inputValue.length > 0 && (
+      {value.length > 0 && (
         <button
           className={cx('button')}
           onClick={handleClear}
