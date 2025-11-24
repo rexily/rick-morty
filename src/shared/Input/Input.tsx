@@ -7,10 +7,10 @@ const cx = classNames.bind(styles)
 
 interface IInput {
   variant?: 'bordered' | 'underlined'
-  value?: string
+  value: string
   icon?: React.ReactNode
   placeholder?: string
-  onChange?: (value: string) => void
+  onChange: (value: string) => void
   className?: string | string[]
 }
 
@@ -23,41 +23,40 @@ export const Input: React.FC<IInput> = ({
   placeholder
 }) => {
   const ref = useRef<HTMLInputElement | null>(null)
+  const [inputValue, setInputValue] = useState<string>(value)
 
-  const [hasValue, setHasValue] = useState(false)
-
-  const handleInput = () => {
-    const value = ref.current?.value ?? ''
-    setHasValue(value.length > 0)
-    onChange?.(value)
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value)
   }
 
+
   const handleClear = () => {
-    if (!ref.current) return
-    ref.current.value = ''
-    setHasValue(false)
-    onChange?.('')
-    ref.current.focus()
+    setInputValue('')
+    onChange('')
+  }
+
+  const setFocus = () => {
+    ref.current?.focus()
   }
 
   return (
     <div
-      onClick={() => ref.current?.focus()}
+      onClick={setFocus}
       className={cx('input--box', `input--box-${variant}`, className)}
     >
       <div className={cx('input--inner')}>
-        {variant === 'bordered' && icon}
+        {icon}
 
         <input
           ref={ref}
-          defaultValue={value}
-          onInput={handleInput}
+          value={inputValue}
+          onChange={handleInput}
           className={cx('input', `input-${variant}`)}
           placeholder={placeholder}
         />
       </div>
 
-      {hasValue && variant === 'bordered' && (
+      {inputValue.length > 0 && (
         <button
           className={cx('button')}
           onClick={handleClear}
