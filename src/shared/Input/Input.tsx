@@ -5,7 +5,7 @@ import styles from './Input.module.scss'
 
 const cx = classNames.bind(styles)
 
-interface IInter {
+interface IInput {
   variant?: 'bordered' | 'underlined'
   value?: string
   icon?: React.ReactNode
@@ -14,7 +14,7 @@ interface IInter {
   className?: string | string[]
 }
 
-export const Input: React.FC<IInter> = ({
+export const Input: React.FC<IInput> = ({
   variant = 'bordered',
   value,
   onChange,
