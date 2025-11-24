@@ -1,0 +1,57 @@
+.input {
+  width: 100%;
+  outline: none;
+  border: none;
+
+  &-bordered {
+    font-size: 16px;
+  }
+
+  &-underlined {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.input--box {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  height: 56px;
+  width: 240px;
+  border: 1px solid $color-secondary;
+  border-radius: 6px;
+  padding: 16px 8px 16px 16px;
+  cursor: pointer;
+
+  &-underlined {
+    border: none;
+    border-bottom: 1px solid $color-text;
+    border-radius: 0;
+    padding: 0;
+    height: 30px;
+    width: 178px;
+    min-width: 178px;
+    font-weight: 800;
+    font-size: 20px;
+  }
+}
+
+.input--inner {
+  display: flex;
+  gap: 8px;
+}
+
+.button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}

@@ -1,9 +1,7 @@
 import classNames from 'classnames/bind'
 
-import { GENDER_OPTIONS, SPECIES_OPTIONS, STATUS_OPTIONS } from '@/constants'
-
-import { Select, StatusCircle } from '@/shared/'
-
+import { SearchIcon } from '@/assets/icons'
+import { Input } from '@/shared/Input/Input'
 import styles from './CharacterList.module.scss'
 
 const cx = classNames.bind(styles)
@@ -12,29 +10,20 @@ export const CharacterList = () => {
   return (
     <div className={cx('character-list')}>
       <div className={cx('character-list__inner')}>
-        <Select
-          size='small'
-          placeholder='Status'
-          value='alive'
-          options={STATUS_OPTIONS}
-          SelectOptionComponent={({ label, value }) => (
-            <>
-              {label}
-              <StatusCircle status={value} />
-            </>
-          )}
+        <Input
+          placeholder='Filter by name...'
+          icon={<SearchIcon />}
         />
 
-        <Select
-          size='default'
-          placeholder='Gender'
-          options={GENDER_OPTIONS}
+        <Input
+          placeholder='Filter by name...'
+          value='Morty Smith'
         />
 
-        <Select
-          size='default'
-          placeholder='Species'
-          options={SPECIES_OPTIONS}
+        <Input
+          variant='underlined'
+          placeholder='Enter name...'
+          value='Rick Sanchez'
         />
       </div>
     </div>
