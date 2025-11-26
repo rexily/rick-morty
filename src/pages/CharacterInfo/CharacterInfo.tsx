@@ -1,9 +1,10 @@
 import { Link } from 'react-router'
 import { ArrowLeft } from '@/assets/icons'
-import { Loader } from '@/shared'
 
 import classNames from 'classnames/bind'
 import styles from './CharacterInfo.module.scss'
+import { CharacterCard } from '@/widgets'
+import { RickSanchez } from '@/constants'
 
 const cx = classNames.bind(styles)
 
@@ -18,12 +19,9 @@ export const CharacterInfo = () => {
         <span>GO BACK</span>
       </Link>
 
-      <div className={cx('character-info')}>
-        <Loader
-          size='large'
-          text='Loading character card...'
-        />
-      </div>
+      <CharacterCard
+        character={RickSanchez}
+      />
     </div>
   )
 }

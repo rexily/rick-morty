@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "classnames": "^2.5.1",
+    "modern-css-reset": "^1.4.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.9.5"
