@@ -6,6 +6,7 @@ import ArrowDownIconSmall from './arrow-down-small.svg?react'
 import ArrowUpIconSmall from './arrow-up-small.svg?react'
 import SearchIcon from './search.svg?react'
 import CrossIcon from './cross.svg?react'
+import EditIcon from './edit.svg?react'
 
 export {
   ArrowLeft,
@@ -15,5 +16,6 @@ export {
   ArrowDownIconSmall,
   ArrowUpIconSmall,
   SearchIcon,
-  CrossIcon
+  CrossIcon,
+  EditIcon
 }
