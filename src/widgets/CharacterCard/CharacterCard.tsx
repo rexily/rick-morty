@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import classNames from 'classnames/bind'
-import styles from './CharacterCard.module.scss'
+import { useTranslation } from 'react-i18next'
 import { EditIcon } from '@/assets/icons'
 import { StatusCircle } from '@/shared'
+
+import styles from './CharacterCard.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -28,21 +30,23 @@ export const CharacterCard: React.FC<ICharacterCard> = ({
 
   const [cardMode, setCardMode] = useState(mode)
 
-  const handleMode = () => {
+  const { t } = useTranslation('common')
+
+  const setEditMode = () => {
     setCardMode('edit')
   }
 
   return (
     <div className={cx('card')}>
       <img
-        alt='Caracter photo'
+        alt='Character photo'
         className={cx('card__photo')}
         src={image}
       />
 
       <span className={cx('card__edit')}>
         <button
-          onClick={handleMode}
+          onClick={setEditMode}
           className={cx('button')}
         >
           <EditIcon />
@@ -53,24 +57,39 @@ export const CharacterCard: React.FC<ICharacterCard> = ({
         <span className={cx('card__name')}>{name}</span>
 
         <div className={cx('card__row')}>
-          <span className={cx('card__label')}>Gender</span>
-          <span className={cx('card__value')}>{gender}</span>
+          <span className={cx('card__label')}>
+            {t('character.gender', { postProcess: 'capitalizeFirst' })}
+          </span>
+          <span className={cx('card__value')}>
+            {t(`gender.${gender}`, { postProcess: 'capitalizeFirst' })}
+          </span>
         </div>
 
         <div className={cx('card__row')}>
-          <span className={cx('card__label')}>Species</span>
-          <span className={cx('card__value')}>{species}</span>
+          <span className={cx('card__label')}>
+            {t('character.species', { postProcess: 'capitalizeFirst' })}
+          </span>
+          <span className={cx('card__value')}>
+            {t(`species.${species}`, { postProcess: 'capitalizeFirst' })}
+          </span>
         </div>
 
         <div className={cx('card__row')}>
-          <span className={cx('card__label')}>Location</span>
-          <span className={cx('card__value')}>{location}</span>
+          <span className={cx('card__label')}>
+            {t('character.location', { postProcess: 'capitalizeFirst' })}
+          </span>
+          <span className={cx('card__value')}>
+            {t(`location.${location}`, { postProcess: 'capitalizeFirst' })}
+          </span>
         </div>
 
         <div className={cx('card__status')}>
-          <span className={cx('card__label')}>Status</span>
+          <span className={cx('card__label')}>
+            {t('character.status', { postProcess: 'capitalizeFirst' })}
+          </span>
           <span className={cx('card__value')}>
-            {status} <StatusCircle status={status.toLowerCase()} />
+            {t(`status.${status}`, { postProcess: 'capitalizeFirst' })}{' '}
+            <StatusCircle status={status} />
           </span>
         </div>
       </div>

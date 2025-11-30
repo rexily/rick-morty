@@ -1,10 +1,10 @@
 import { Link } from 'react-router'
-import { ArrowLeft } from '@/assets/icons'
-
 import classNames from 'classnames/bind'
-import styles from './CharacterInfo.module.scss'
+import { ArrowLeft } from '@/assets/icons'
+import { RickSanchez, SummerSmith } from '@/constants'
 import { CharacterCard } from '@/widgets'
-import { RickSanchez } from '@/constants'
+
+import styles from './CharacterInfo.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -19,9 +19,9 @@ export const CharacterInfo = () => {
         <span>GO BACK</span>
       </Link>
 
-      <CharacterCard
-        character={RickSanchez}
-      />
+      <CharacterCard character={RickSanchez} />
+
+      <CharacterCard character={SummerSmith} />
     </div>
   )
 }

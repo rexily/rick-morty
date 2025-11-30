@@ -1,0 +1,24 @@
+{
+  "character": {
+    "species": "species",
+    "gender": "gender",
+    "location": "location",
+    "status": "status",
+    "origin": "origin"
+  },
+  "species": {
+    "human": "human"
+  },
+  "gender": {
+    "male": "male",
+    "female": "female"
+  },
+  "status": {
+    "alive": "alive",
+    "dead": "dead",
+    "unknown": "unknown"
+  },
+  "location": {
+    "earth": "earth"
+  }
+}
