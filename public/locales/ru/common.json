@@ -1,0 +1,24 @@
+{
+  "character": {
+    "species": "вид",
+    "gender": "пол",
+    "location": "местонахождение",
+    "status": "статус",
+    "origin": "происхождение"
+  },
+  "species": {
+    "human": "человек"
+  },
+  "gender": {
+    "male": "мужской",
+    "female": "женский"
+  },
+  "status": {
+    "alive": "жив",
+    "dead": "мертв",
+    "unknown": "неизвестно"
+  },
+  "location": {
+    "earth": "земля"
+  }
+}
