@@ -40,7 +40,7 @@ export const Input: React.FC<IInput> = ({
   return (
     <div
       onClick={setFocus}
-      className={cx('input--box', `input--box-${variant}`, className)}
+      className={cx('input--box', `input--box-${variant}`)}
     >
       <div className={cx('input--inner')}>
         {icon}
@@ -49,7 +49,7 @@ export const Input: React.FC<IInput> = ({
           ref={ref}
           value={value}
           onChange={handleInput}
-          className={cx('input', `input-${variant}`)}
+          className={cx('input', `input-${variant}`, className)}
           placeholder={placeholder}
         />
       </div>

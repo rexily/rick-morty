@@ -5,7 +5,8 @@
   position: relative;
 
   &_small {
-    width: 94px;
+    min-width: 94px;
+    width: fit-content;
     max-height: 21px;
   }
 
@@ -52,6 +53,8 @@
     &_small {
       top: calc(100% + 7px);
       row-gap: 0;
+      width: fit-content;
+      min-width: 94px;
     }
   }
 
@@ -61,8 +64,6 @@
     color: #00000099;
     user-select: none;
     cursor: pointer;
-    width: 100%;
-
 
     &_small {
       display: flex;
@@ -70,7 +71,21 @@
       align-items: center;
       font-size: 14px;
       height: 17px;
-      padding: 5px;
+      padding: 10px 5px;
+    }
+
+    &:first-child {
+      &:hover,
+      &:focus {
+        border-radius: 6px 6px 0 0;
+      }
+    }
+
+    &:last-child {
+      &:hover,
+      &:focus {
+        border-radius: 0 0 6px 6px;
+      }
     }
 
     &:hover,

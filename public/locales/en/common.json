@@ -4,14 +4,25 @@
     "gender": "gender",
     "location": "location",
     "status": "status",
-    "origin": "origin"
+    "origin": "origin",
+    "name": "name"
   },
   "species": {
-    "human": "human"
+    "human": "human",
+    "alien": "alien",
+    "humanoid": "humanoid",
+    "animal": "animal",
+    "robot": "robot",
+    "cronenberg": "cronenberg",
+    "mythology": "mythology",
+    "disease": "disease",
+    "unknown": "unknown"
   },
   "gender": {
     "male": "male",
-    "female": "female"
+    "female": "female",
+    "genderless": "genderless",
+    "unknown": "unknown"
   },
   "status": {
     "alive": "alive",
@@ -20,5 +31,8 @@
   },
   "location": {
     "earth": "earth"
+  },
+  "filter": {
+    "filterByName": "filter by name"
   }
 }
