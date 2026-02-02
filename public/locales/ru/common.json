@@ -4,21 +4,35 @@
     "gender": "пол",
     "location": "местонахождение",
     "status": "статус",
-    "origin": "происхождение"
+    "origin": "происхождение",
+    "name": "имя"
   },
   "species": {
-    "human": "человек"
+    "human": "человек",
+    "alien": "инопланетянин",
+    "humanoid": "гуманоид",
+    "animal": "животное",
+    "robot": "робот",
+    "cronenberg": "кроненберг",
+    "mythology": "миф",
+    "disease": "болезнь",
+    "unknown": "неизвестно"
   },
   "gender": {
     "male": "мужской",
-    "female": "женский"
+    "female": "женский",
+    "genderless": "бесполый",
+    "unknown": "неизвестно"
   },
   "status": {
-    "alive": "жив",
+    "alive": "живой",
     "dead": "мертв",
     "unknown": "неизвестно"
   },
   "location": {
     "earth": "земля"
+  },
+  "filter": {
+    "filterByName": "сортировка по имени"
   }
 }

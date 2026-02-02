@@ -1,24 +1,24 @@
 export const STATUS_OPTIONS = [
-  { label: 'Alive', value: 'alive' },
-  { label: 'Dead', value: 'dead' },
-  { label: 'Unknown', value: 'unknown' }
+  { label: 'alive', value: 'alive' },
+  { label: 'dead', value: 'dead' },
+  { label: 'unknown', value: 'unknown' }
 ]
 
 export const SPECIES_OPTIONS = [
-  { label: 'Human', value: 'human' },
-  { label: 'Alien', value: 'alien' },
-  { label: 'Humanoid', value: 'humanoid' },
-  { label: 'Animal', value: 'animal' },
-  { label: 'Robot', value: 'robot' },
-  { label: 'Cronenberg', value: 'cronenberg' },
-  { label: 'Mythology', value: 'mythology' },
-  { label: 'Disease', value: 'disease' },
-  { label: 'Unknown', value: 'unknown' }
+  { label: 'human', value: 'human' },
+  { label: 'alien', value: 'alien' },
+  { label: 'humanoid', value: 'humanoid' },
+  { label: 'animal', value: 'animal' },
+  { label: 'robot', value: 'robot' },
+  { label: 'cronenberg', value: 'cronenberg' },
+  { label: 'mythology', value: 'mythology' },
+  { label: 'disease', value: 'disease' },
+  { label: 'unknown', value: 'unknown' }
 ]
 
 export const GENDER_OPTIONS = [
-  { label: 'Female', value: 'female' },
-  { label: 'Male', value: 'male' },
-  { label: 'Genderless', value: 'genderless' },
-  { label: 'Unknown', value: 'unknown' }
+  { label: 'female', value: 'female' },
+  { label: 'male', value: 'male' },
+  { label: 'genderless', value: 'genderless' },
+  { label: 'unknown', value: 'unknown' }
 ]
