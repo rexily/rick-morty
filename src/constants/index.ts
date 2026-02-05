@@ -1,2 +1,2 @@
-export * from './filterStatus';
+export * from './filterOptions';
 export * from './characters';

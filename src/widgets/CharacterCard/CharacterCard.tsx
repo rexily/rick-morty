@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import classNames from 'classnames/bind'
 import { useTranslation } from 'react-i18next'
-import { EditIcon } from '@/assets/icons'
-import { StatusCircle } from '@/shared'
+import { CrossIcon, EditIcon, OkIcon } from '@/assets/icons'
+import { Input, Select, StatusCircle } from '@/shared'
 
 import styles from './CharacterCard.module.scss'
+import { useStatuses } from '@/constants'
 
 const cx = classNames.bind(styles)
 
@@ -12,28 +13,48 @@ interface ICharacter {
   name: string
   gender: string
   species: string
-  location: string
+  location: { name: string }
   status: string
   image: string
 }
 
-interface ICharacterCard {
-  character: ICharacter
-  mode?: 'view' | 'edit'
+type CharacterValuesType = Pick<ICharacter, 'name' | 'status'> & {
+  location: string
 }
 
-export const CharacterCard: React.FC<ICharacterCard> = ({
-  character,
-  mode = 'view'
-}) => {
-  const { name, gender, species, location, status, image } = character
+interface ICharacterCard {
+  character: ICharacter
+}
 
-  const [cardMode, setCardMode] = useState(mode)
+export const CharacterCard = ({ character }: ICharacterCard) => {
+  const {
+    name,
+    gender,
+    species,
+    status,
+    image,
+    location: { name: locationName }
+  } = character
 
   const { t } = useTranslation('common')
 
-  const setEditMode = () => {
-    setCardMode('edit')
+  const statusOptions = useStatuses()
+
+  const [isEditable, setIsEditable] = useState<boolean>(false)
+
+  const [characterValues, setCharacterValues] = useState<CharacterValuesType>({
+    name,
+    status,
+    location: locationName
+  })
+
+  const handleEdit = () => {
+    setIsEditable((prevState) => !prevState)
+  }
+
+  const handleReset = () => {
+    setIsEditable(false)
+    setCharacterValues({ name, status, location: locationName })
   }
 
   return (
@@ -44,53 +65,98 @@ export const CharacterCard: React.FC<ICharacterCard> = ({
         src={image}
       />
 
-      <span className={cx('card__edit')}>
-        <button
-          onClick={setEditMode}
-          className={cx('button')}
-        >
-          <EditIcon />
-        </button>
-      </span>
+      {isEditable ? (
+        <span className={cx('card__apply')}>
+          <OkIcon onClick={handleEdit} />
+          <CrossIcon onClick={handleReset} />
+        </span>
+      ) : (
+        <span className={cx('card__edit')}>
+          <EditIcon onClick={handleEdit} />
+        </span>
+      )}
 
       <div className={cx('card__description')}>
-        <span className={cx('card__name')}>{name}</span>
+        {isEditable ? (
+          <Input
+            className={cx('card__name')}
+            variant='underlined'
+            onChange={(newValue) => {
+              setCharacterValues((prevState) => ({
+                ...prevState,
+                name: newValue
+              }))
+            }}
+            value={characterValues.name}
+            placeholder={t(`character.name`)}
+          />
+        ) : (
+          <span className={cx('card__name')}>{characterValues.name}</span>
+        )}
 
         <div className={cx('card__row')}>
-          <span className={cx('card__label')}>
-            {t('character.gender', { postProcess: 'capitalizeFirst' })}
-          </span>
-          <span className={cx('card__value')}>
-            {t(`gender.${gender}`, { postProcess: 'capitalizeFirst' })}
-          </span>
+          <span className={cx('card__label')}>{t('character.gender')}</span>
+          <span className={cx('card__value')}>{t(`gender.${gender}`)}</span>
         </div>
 
         <div className={cx('card__row')}>
-          <span className={cx('card__label')}>
-            {t('character.species', { postProcess: 'capitalizeFirst' })}
-          </span>
-          <span className={cx('card__value')}>
-            {t(`species.${species}`, { postProcess: 'capitalizeFirst' })}
-          </span>
+          <span className={cx('card__label')}>{t('character.species')}</span>
+          <span className={cx('card__value')}>{t(`species.${species}`)}</span>
         </div>
 
         <div className={cx('card__row')}>
-          <span className={cx('card__label')}>
-            {t('character.location', { postProcess: 'capitalizeFirst' })}
-          </span>
-          <span className={cx('card__value')}>
-            {t(`location.${location}`, { postProcess: 'capitalizeFirst' })}
-          </span>
+          <span className={cx('card__label')}>{t('character.location')}</span>
+
+          {isEditable ? (
+            <Input
+              className={cx('card__input')}
+              variant='underlined'
+              onChange={(newValue) => {
+                setCharacterValues((prevState) => ({
+                  ...prevState,
+                  location: newValue
+                }))
+              }}
+              value={characterValues.location}
+              placeholder={t(`character.location`)}
+            />
+          ) : (
+            <span className={cx('card__location')}>
+              {characterValues.location}
+            </span>
+          )}
         </div>
 
-        <div className={cx('card__status')}>
-          <span className={cx('card__label')}>
-            {t('character.status', { postProcess: 'capitalizeFirst' })}
-          </span>
-          <span className={cx('card__value')}>
-            {t(`status.${status}`, { postProcess: 'capitalizeFirst' })}{' '}
-            <StatusCircle status={status} />
-          </span>
+        <div className={cx('card__column')}>
+          <span className={cx('card__label')}>{t('character.status')}</span>
+
+          {isEditable ? (
+            <Select
+              placeholder={t('character.status')}
+              size='small'
+              OptionComponent={({ option }) => {
+                return (
+                  <span className={cx('card__status')}>
+                    <span>{option.label}</span>{' '}
+                    <StatusCircle status={option.value} />
+                  </span>
+                )
+              }}
+              value={characterValues.status}
+              options={statusOptions}
+              onChange={(newValue) => {
+                setCharacterValues((prevState) => ({
+                  ...prevState,
+                  status: newValue
+                }))
+              }}
+            />
+          ) : (
+            <span className={cx('card__status')}>
+              <span>{t(`status.${characterValues.status}`)}</span>
+              <StatusCircle status={characterValues.status} />
+            </span>
+          )}
         </div>
       </div>
     </div>
