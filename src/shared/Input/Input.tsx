@@ -40,7 +40,7 @@ export const Input: React.FC<IInput> = ({
   return (
     <div
       onClick={setFocus}
-      className={cx('input--box', `input--box-${variant}`)}
+      className={cx('input--box', `input--box-${variant}`, className)}
     >
       <div className={cx('input--inner')}>
         {icon}
