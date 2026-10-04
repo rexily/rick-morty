@@ -34,5 +34,17 @@
   },
   "filter": {
     "filterByName": "filter by name"
+  },
+  "request": {
+    "error": {
+      "error": "error",
+      "thereIsNothingHere": "there is nothing here",
+      "404": "request failed with status code 404",
+      "failedStatusCode": "request failed with status code",
+      "failedLoadingData": "couldn't load the list of characters"
+    },
+    "success": {
+
+    }
   }
 }

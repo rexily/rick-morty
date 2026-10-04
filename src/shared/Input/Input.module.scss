@@ -26,6 +26,7 @@
   padding: 16px 24px 16px 16px;
   cursor: pointer;
   position: relative;
+  //min-width: 240px;
 
   &-underlined {
     border: none;
@@ -38,11 +39,17 @@
     font-weight: 800;
     font-size: 20px;
   }
+
+  &-bordered {
+    max-width: 240px;
+    max-height: 56px;
+  }
 }
 
 .input--inner {
   display: flex;
   gap: 8px;
+  align-items: center;
 }
 
 .button {

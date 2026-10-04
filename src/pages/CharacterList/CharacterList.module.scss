@@ -6,7 +6,14 @@
 
   &__inner {
       display: flex;
-      gap: 40px;
+      gap: 28px;
       flex-direction: column;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
   }
 }

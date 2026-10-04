@@ -13,7 +13,7 @@ interface ICharacter {
   name: string
   gender: string
   species: string
-  location: { name: string }
+  location: string
   status: string
   image: string
 }
@@ -33,7 +33,7 @@ export const CharacterCard = ({ character }: ICharacterCard) => {
     species,
     status,
     image,
-    location: { name: locationName }
+    location
   } = character
 
   const { t } = useTranslation('common')
@@ -45,7 +45,7 @@ export const CharacterCard = ({ character }: ICharacterCard) => {
   const [characterValues, setCharacterValues] = useState<CharacterValuesType>({
     name,
     status,
-    location: locationName
+    location
   })
 
   const handleEdit = () => {
@@ -54,7 +54,7 @@ export const CharacterCard = ({ character }: ICharacterCard) => {
 
   const handleReset = () => {
     setIsEditable(false)
-    setCharacterValues({ name, status, location: locationName })
+    setCharacterValues({ name, status, location })
   }
 
   return (

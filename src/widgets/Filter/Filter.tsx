@@ -5,6 +5,7 @@ import { Input, Select } from '@/shared'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useGenders, useSpecies, useStatuses } from '@/constants'
+import { SearchIcon } from '@/assets/icons'
 
 const cx = classNames.bind(styles)
 
@@ -25,6 +26,7 @@ export const Filter = () => {
   return (
     <div className={cx('filter')}>
       <Input
+        icon={<SearchIcon/>}
         value={filterCombined.searchValue}
         onChange={(newValue) => {
           setFilterCombined((prevState) => ({
@@ -33,6 +35,7 @@ export const Filter = () => {
           }))
         }}
         placeholder={`${t('filter.filterByName', { postProcess: 'capitalizeFirst' })}...`}
+        className={cx('input1')}
       />
 
       <Select

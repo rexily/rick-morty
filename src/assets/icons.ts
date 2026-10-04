@@ -8,6 +8,7 @@ import SearchIcon from './search.svg?react'
 import CrossIcon from './cross.svg?react'
 import EditIcon from './edit.svg?react'
 import OkIcon from './ok.svg?react'
+import CloseIcon from './close.svg?react'
 
 export {
   ArrowLeft,
@@ -19,5 +20,6 @@ export {
   SearchIcon,
   CrossIcon,
   EditIcon,
-  OkIcon
+  OkIcon,
+  CloseIcon
 }
