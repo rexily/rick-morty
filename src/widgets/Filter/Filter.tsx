@@ -35,7 +35,6 @@ export const Filter = () => {
           }))
         }}
         placeholder={`${t('filter.filterByName', { postProcess: 'capitalizeFirst' })}...`}
-        className={cx('input1')}
       />
 
       <Select
