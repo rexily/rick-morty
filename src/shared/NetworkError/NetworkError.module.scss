@@ -3,4 +3,14 @@
   border-radius: 12px;
   border: 1px solid $color-toast-error-border;
   background: $color-toast-error-background;
+  display: flex;
+  gap: 16px;
+  justify-content: start;
+
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    height: 24px;
+  }
 }

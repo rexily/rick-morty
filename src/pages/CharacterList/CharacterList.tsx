@@ -1,13 +1,14 @@
+import { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
+import toast, { Toaster } from 'react-hot-toast'
+
+import { getCharacters } from '@/api'
+import { Loader } from '@/shared'
+import { NetworkError } from '@/shared/NetworkError/NetworkError'
+import type { CharacterType } from '@/shared/types'
+import { CharacterCard, Filter } from '@/widgets'
 
 import styles from './CharacterList.module.scss'
-import { CharacterCard, Filter } from '@/widgets'
-import { useEffect, useState } from 'react'
-import toast, { Toaster } from 'react-hot-toast'
-import { Loader } from '@/shared'
-import type { CharacterType } from '@/shared/types'
-import { getCharacters } from '@/api'
-import { NetworkError } from '@/shared/NetworkError/NetworkError'
 
 const cx = classNames.bind(styles)
 
@@ -16,50 +17,47 @@ export const CharacterList = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const request = async () => {
-      const response = await getCharacters()
+    const requestCharacters = async () => {
+      try {
+        setIsLoading(true)
+        const receivedCharacters = await getCharacters()
 
-      console.log('USE EFFECT LOG', response)
-      if (response.length) setCharacters(response)
+        setCharacters(receivedCharacters)
 
-      // setCharacters(response)
-      if (response.error.isAxiosError) {
-        // toast(response.error.message)
+      } catch {
+        setCharacters([])
+
         toast.custom(
-          <NetworkError
-            close={() => {
-              toast.dismiss()
-            }}
-            text={response.error.message}
-          />,
+          <NetworkError close={() => toast.dismiss()} />,
           { duration: Infinity }
         )
-        setCharacters([])
+      } finally {
+        setIsLoading(false)
       }
     }
-    request()
-    setIsLoading(false)
+
+    void requestCharacters()
   }, [])
 
   return (
     <div className={cx('character-list')}>
+      <Toaster position='bottom-right' />
+
       <div className={cx('character-list__inner')}>
         <Filter />
-        <div>
-          {/*<button onClick={notify}>Make me a toast</button>*/}
-          <Toaster position='bottom-right' />
-        </div>
 
-        {isLoading && <Loader size='large' />}
-
-        <div className={cx('character-list__list')}>
-          {characters.map((character) => (
-            <CharacterCard
-              key={character.id}
-              character={character}
-            />
-          ))}
-        </div>
+        {isLoading ? (
+          <Loader size='large' />
+        ) : (
+          <div className={cx('character-list__list')}>
+            {characters.map((character) => (
+              <CharacterCard
+                key={character.id}
+                character={character}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

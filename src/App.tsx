@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router'
 import { CharacterList, CharacterInfo } from '@/pages'
 import { Layout } from '@/shared'
-import { CharacterList2 } from '@/pages/CharacterList/CharacterList2'
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
       >
         <Route
           index
-          element={<CharacterList2 />}
+          element={<CharacterList />}
         />
 
         <Route
