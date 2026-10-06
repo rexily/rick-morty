@@ -4,11 +4,11 @@
   border: none;
   background-color: transparent;
 
-  &-bordered {
+  &_bordered {
     font-size: 16px;
   }
 
-  &-underlined {
+  &_underlined {
     font-weight: 500;
     font-size: 14px;
   }
@@ -27,7 +27,7 @@
   cursor: pointer;
   position: relative;
 
-  &-underlined {
+  &_underlined {
     border: none;
     border-bottom: 1px solid $color-text;
     border-radius: 0;
@@ -38,11 +38,17 @@
     font-weight: 800;
     font-size: 20px;
   }
+
+  &_bordered {
+    max-width: 240px;
+    max-height: 56px;
+  }
 }
 
 .input--inner {
   display: flex;
   gap: 8px;
+  align-items: center;
 }
 
 .button {
