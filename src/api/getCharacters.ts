@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { transformApiCharacter, type ApiCharacter } from '@/api/helpers'
+import { type ApiCharacter, transformApiCharacter } from '@/api/helpers'
 
 const baseURL = 'https://rickandmortyapi.com/api'
 

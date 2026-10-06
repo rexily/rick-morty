@@ -3,38 +3,17 @@ import classNames from 'classnames/bind'
 import { useTranslation } from 'react-i18next'
 import { CrossIcon, EditIcon, OkIcon } from '@/assets/icons'
 import { Input, Select, StatusCircle } from '@/shared'
+import { useStatuses } from '@/constants'
+import type { CharacterType } from '@/shared/types'
 
 import styles from './CharacterCard.module.scss'
-import { useStatuses } from '@/constants'
 
 const cx = classNames.bind(styles)
 
-interface ICharacter {
-  name: string
-  gender: string
-  species: string
-  location: string
-  status: string
-  image: string
-}
+type CharacterValuesType = Pick<CharacterType, 'name' | 'status' | 'location'>
 
-type CharacterValuesType = Pick<ICharacter, 'name' | 'status'> & {
-  location: string
-}
-
-interface ICharacterCard {
-  character: ICharacter
-}
-
-export const CharacterCard = ({ character }: ICharacterCard) => {
-  const {
-    name,
-    gender,
-    species,
-    status,
-    image,
-    location
-  } = character
+export const CharacterCard = ({ character }: { character: CharacterType }) => {
+  const { name, gender, species, status, image, location } = character
 
   const { t } = useTranslation('common')
 

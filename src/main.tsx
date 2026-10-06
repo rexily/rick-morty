@@ -6,9 +6,9 @@ import App from '@/App'
 import '@/i18n'
 
 createRoot(document.getElementById('root')!).render(
-  // <StrictMode>
+  <StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  // </StrictMode>
+  </StrictMode>
 )

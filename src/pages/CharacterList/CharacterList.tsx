@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 import { getCharacters } from '@/api'
 import { Loader } from '@/shared'
@@ -23,7 +23,6 @@ export const CharacterList = () => {
         const receivedCharacters = await getCharacters()
 
         setCharacters(receivedCharacters)
-
       } catch {
         setCharacters([])
 
@@ -41,22 +40,19 @@ export const CharacterList = () => {
 
   return (
     <div className={cx('character-list')}>
-      <Toaster position='bottom-right' />
-
       <div className={cx('character-list__inner')}>
         <Filter />
 
         {isLoading ? (
           <Loader size='large' />
         ) : (
-          <div className={cx('character-list__list')}>
+          <ol className={cx('character-list__list')}>
             {characters.map((character) => (
-              <CharacterCard
-                key={character.id}
-                character={character}
-              />
+              <li key={character.id}>
+                <CharacterCard character={character} />
+              </li>
             ))}
-          </div>
+          </ol>
         )}
       </div>
     </div>

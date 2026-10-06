@@ -4,11 +4,11 @@
   border: none;
   background-color: transparent;
 
-  &-bordered {
+  &_bordered {
     font-size: 16px;
   }
 
-  &-underlined {
+  &_underlined {
     font-weight: 500;
     font-size: 14px;
   }
@@ -26,9 +26,8 @@
   padding: 16px 24px 16px 16px;
   cursor: pointer;
   position: relative;
-  //min-width: 240px;
 
-  &-underlined {
+  &_underlined {
     border: none;
     border-bottom: 1px solid $color-text;
     border-radius: 0;
@@ -40,7 +39,7 @@
     font-size: 20px;
   }
 
-  &-bordered {
+  &_bordered {
     max-width: 240px;
     max-height: 56px;
   }

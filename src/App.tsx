@@ -1,10 +1,13 @@
 import { Route, Routes } from 'react-router'
 import { CharacterList, CharacterInfo } from '@/pages'
 import { Layout } from '@/shared'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   return (
-    <Routes>
+    <>
+      <Toaster position='bottom-right' />
+      <Routes>
       <Route
         path='/'
         element={<Layout />}
@@ -20,6 +23,7 @@ function App() {
         />
       </Route>
     </Routes>
+</>
   )
 }
 
