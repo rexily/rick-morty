@@ -41,7 +41,9 @@
       "thereIsNothingHere": "there is nothing here",
       "404": "request failed with status code 404",
       "failedStatusCode": "request failed with status code",
-      "failedLoadingData": "couldn't load the list of characters"
+      "failedLoadingData": "couldn't load the list of characters",
+      "failedToShowPage": "couldn't show the page",
+      "tryAgain": "try again"
     },
     "success": {
 

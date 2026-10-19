@@ -2,22 +2,25 @@ import classNames from 'classnames/bind'
 
 import styles from './Filter.module.scss'
 import { Input, Select } from '@/shared'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useGenders, useSpecies, useStatuses } from '@/constants'
 import { SearchIcon } from '@/assets/icons'
+import type { CharacterFilters } from '@/shared/types'
 
 const cx = classNames.bind(styles)
 
-export const Filter = () => {
+type FilterProps = {
+  filters: CharacterFilters
+  onFilterChange: <K extends keyof CharacterFilters>(
+    key: K,
+    value: CharacterFilters[K]
+  ) => void
+}
+
+export const Filter = ({ filters, onFilterChange }: FilterProps) => {
   const { t } = useTranslation('common')
 
-  const [filterCombined, setFilterCombined] = useState({
-    searchValue: '',
-    species: null,
-    gender: null,
-    status: null
-  })
+  const { name, species, gender, status } = filters
 
   const genderOptions = useGenders({ capitalize: true })
   const speciesOptions = useSpecies({ capitalize: true })
@@ -26,13 +29,10 @@ export const Filter = () => {
   return (
     <div className={cx('filter')}>
       <Input
-        icon={<SearchIcon/>}
-        value={filterCombined.searchValue}
+        icon={<SearchIcon />}
+        value={name}
         onChange={(newValue) => {
-          setFilterCombined((prevState) => ({
-            ...prevState,
-            searchValue: newValue
-          }))
+          onFilterChange('name', newValue)
         }}
         placeholder={`${t('filter.filterByName', { postProcess: 'capitalizeFirst' })}...`}
       />
@@ -41,28 +41,25 @@ export const Filter = () => {
         size='medium'
         placeholder={t('character.species', { postProcess: 'capitalizeFirst' })}
         onChange={(newValue) => {
-          setFilterCombined((prevState) => ({
-            ...prevState,
-            species: newValue
-          }))
+          onFilterChange('species', newValue)
         }}
-        value={filterCombined.species}
+        value={species}
         options={speciesOptions}
       />
 
       <Select
-        value={filterCombined.gender}
+        value={gender}
         onChange={(newValue) => {
-          setFilterCombined((prevState) => ({ ...prevState, gender: newValue }))
+          onFilterChange('gender', newValue)
         }}
         placeholder={t('character.gender', { postProcess: 'capitalizeFirst' })}
         options={genderOptions}
       />
 
       <Select
-        value={filterCombined.status}
+        value={status}
         onChange={(newValue) => {
-          setFilterCombined((prevState) => ({ ...prevState, status: newValue }))
+          onFilterChange('status', newValue)
         }}
         placeholder={t('character.status', { postProcess: 'capitalizeFirst' })}
         options={statusOptions}

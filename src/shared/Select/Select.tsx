@@ -20,7 +20,7 @@ const ICONS = {
 
 export type Option<T> = {
   label: string
-  value?: T
+  value: T
 }
 
 type DefaultOptionComponentProps<T> = {
@@ -30,10 +30,10 @@ type DefaultOptionComponentProps<T> = {
 type SelectProps<T> = {
   options: Option<T>[]
   placeholder?: string
-  value?: T
+  value?: T | null
   size?: 'small' | 'medium'
   OptionComponent?: ComponentType<DefaultOptionComponentProps<T>>
-  onChange: (value: T) => void
+  onChange: (value: T | null) => void
 }
 
 const DefaultOptionComponent = <T,>({
@@ -42,7 +42,7 @@ const DefaultOptionComponent = <T,>({
   return <span>{option.label}</span>
 }
 
-export const Select = <T,>({
+export const Select = <T extends string>({
   options,
   placeholder,
   onChange,

@@ -124,6 +124,9 @@ export const CharacterCard = ({ character }: { character: CharacterType }) => {
               value={characterValues.status}
               options={statusOptions}
               onChange={(newValue) => {
+                if (newValue === null) {
+                  return
+                }
                 setCharacterValues((prevState) => ({
                   ...prevState,
                   status: newValue
