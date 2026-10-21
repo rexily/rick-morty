@@ -6,7 +6,6 @@ import { getCharacters } from '@/api'
 import type { CharacterFilters, CharacterType } from '@/shared/types'
 import { NetworkError, useDebounce } from '@/shared'
 
-
 export const useCharacters = () => {
   const [characters, setCharacters] = useState<CharacterType[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -63,7 +62,8 @@ export const useCharacters = () => {
         }
       }
     }
-    void requestCharacters()
+    requestCharacters()
+
     return () => {
       controller.abort()
     }
