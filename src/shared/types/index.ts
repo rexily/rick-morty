@@ -28,3 +28,8 @@ export type CharacterFilters = {
   species: SpeciesTypes | null
   status: StatusTypes | null
 }
+
+export type Option<T> = {
+  label: string
+  value: T
+}

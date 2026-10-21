@@ -8,6 +8,7 @@ import {
   ArrowUpIconSmall,
   CrossIcon
 } from '@/assets/icons'
+import type { Option } from '@/shared/types'
 
 import styles from './Select.module.scss'
 
@@ -16,11 +17,6 @@ const cx = classNames.bind(styles)
 const ICONS = {
   small: { up: <ArrowUpIconSmall />, down: <ArrowDownIconSmall /> },
   medium: { up: <ArrowUpIcon />, down: <ArrowDownIcon /> }
-}
-
-export type Option<T> = {
-  label: string
-  value: T
 }
 
 type DefaultOptionComponentProps<T> = {

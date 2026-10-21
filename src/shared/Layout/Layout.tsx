@@ -1,10 +1,9 @@
 import { Outlet, useLocation } from 'react-router'
-import { Header, Footer } from '@/shared'
+import { Header, Footer, PageError } from '@/shared'
 
 import classNames from 'classnames/bind'
 import styles from './Layout.module.scss'
 import { ErrorBoundary } from 'react-error-boundary'
-import { PageError } from '@/shared/PageError/PageError'
 
 const cx = classNames.bind(styles)
 

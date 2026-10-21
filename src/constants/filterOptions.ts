@@ -1,17 +1,17 @@
 import { useTranslation } from 'react-i18next'
-import type { GenderTypes, SpeciesTypes, StatusTypes } from '@/shared/types'
+import type { GenderTypes, Option, SpeciesTypes, StatusTypes } from '@/shared/types'
 
 type CapitalizedOptions = {
   capitalize?: boolean
 }
 
-export const STATUS_OPTIONS: { label: string; value: StatusTypes }[] = [
+export const STATUS_OPTIONS: Option<StatusTypes>[] = [
   { label: 'alive', value: 'alive' },
   { label: 'dead', value: 'dead' },
   { label: 'unknown', value: 'unknown' }
 ]
 
-export const SPECIES_OPTIONS: { label: string; value: SpeciesTypes }[] = [
+export const SPECIES_OPTIONS:  Option<SpeciesTypes>[]  = [
   { label: 'human', value: 'human' },
   { label: 'alien', value: 'alien' },
   { label: 'humanoid', value: 'humanoid' },
@@ -23,7 +23,7 @@ export const SPECIES_OPTIONS: { label: string; value: SpeciesTypes }[] = [
   { label: 'unknown', value: 'unknown' }
 ]
 
-export const GENDER_OPTIONS: { label: string; value: GenderTypes }[] = [
+export const GENDER_OPTIONS: Option<GenderTypes>[] = [
   { label: 'female', value: 'female' },
   { label: 'male', value: 'male' },
   { label: 'genderless', value: 'genderless' },
