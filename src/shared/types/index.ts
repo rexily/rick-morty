@@ -21,3 +21,15 @@ export type CharacterType = {
   species: SpeciesTypes
   status: StatusTypes
 }
+
+export type CharacterFilters = {
+  name: string
+  gender: GenderTypes | null
+  species: SpeciesTypes | null
+  status: StatusTypes | null
+}
+
+export type Option<T> = {
+  label: string
+  value: T
+}

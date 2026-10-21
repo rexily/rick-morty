@@ -8,6 +8,7 @@ import {
   ArrowUpIconSmall,
   CrossIcon
 } from '@/assets/icons'
+import type { Option } from '@/shared/types'
 
 import styles from './Select.module.scss'
 
@@ -18,11 +19,6 @@ const ICONS = {
   medium: { up: <ArrowUpIcon />, down: <ArrowDownIcon /> }
 }
 
-export type Option<T> = {
-  label: string
-  value?: T
-}
-
 type DefaultOptionComponentProps<T> = {
   option: Option<T>
 }
@@ -30,10 +26,10 @@ type DefaultOptionComponentProps<T> = {
 type SelectProps<T> = {
   options: Option<T>[]
   placeholder?: string
-  value?: T
+  value?: T | null
   size?: 'small' | 'medium'
   OptionComponent?: ComponentType<DefaultOptionComponentProps<T>>
-  onChange: (value: T) => void
+  onChange: (value: T | null) => void
 }
 
 const DefaultOptionComponent = <T,>({
@@ -42,7 +38,7 @@ const DefaultOptionComponent = <T,>({
   return <span>{option.label}</span>
 }
 
-export const Select = <T,>({
+export const Select = <T extends string>({
   options,
   placeholder,
   onChange,
