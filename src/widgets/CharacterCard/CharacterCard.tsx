@@ -42,6 +42,7 @@ export const CharacterCard = ({ character }: { character: CharacterType }) => {
         alt='Character photo'
         className={cx('card__photo')}
         src={image}
+        loading='lazy'
       />
 
       {isEditable ? (
