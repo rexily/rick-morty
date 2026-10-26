@@ -4,18 +4,7 @@ import type {
   SpeciesTypes,
   StatusTypes
 } from '@/shared/types'
-
-export type ApiCharacter = {
-  id: number
-  name: string
-  image: string
-  location: {
-    name: string
-  }
-  gender: string
-  species: string
-  status: string
-}
+import type { ApiCharacter } from '@/api/helpers/types'
 
 export const transformApiCharacter = (
   character: ApiCharacter
